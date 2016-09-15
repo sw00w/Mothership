@@ -111,7 +111,7 @@ def getContent(dev_IP, content, user, passwd, path):
     device = pexpect.spawn('ssh admin@%s' % str(dev_IP))
     resp = device.expect([pexpect.TIMEOUT, 'yes/no', 'Password:'])
     if resp == 1:
-        logging.warning('Adding device %s to script host known_hosts file.' $ dev_IP)
+        logging.warning('Adding device %s to script host known_hosts file.' % dev_IP)
         time.sleep(1)
         device.sendline('yes')
         device.expect('Password:')
@@ -144,7 +144,7 @@ def getContent(dev_IP, content, user, passwd, path):
 def getpanos(dev_IP, panver, user, passwd, path):
     """Downloads a specified version of PAN-OS and loads it into the
     software repository."""
-    logging.info('Initiating download of PAN-OS version %s on %s.' % (panver, dev_IP)
+    logging.info('Initiating download of PAN-OS version %s on %s.' % (panver, dev_IP))
     command = "scp import software from %s@192.168.1.254:%s/%s" % (user, path, panver)
     device = pexpect.spawn('ssh admin@%s' % str(dev_IP))
     resp = device.expect([pexpect.TIMEOUT, 'yes/no', 'word:'])
